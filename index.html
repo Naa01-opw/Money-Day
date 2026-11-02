@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Catatan Keuangan</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Catatan Keuangan</h1>
+    <div class="row">
+      <button id="prev" aria-label="Bulan sebelumnya">‹</button>
+      <input type="month" id="month" style="width:auto" aria-label="Pilih bulan">
+      <button id="next" aria-label="Bulan berikutnya">›</button>
+      <button id="theme" aria-label="Ganti tema">◐</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="box"><div class="lbl">Sisa uang bulan ini</div><div class="big" id="sBal">Rp0</div></div>
+    <div class="box"><div class="lbl">Pemasukan</div><div class="mid in" id="sIn">Rp0</div></div>
+    <div class="box"><div class="lbl">Pengeluaran</div><div class="mid out" id="sOut">Rp0</div></div>
+  </section>
+
+  <section class="box" style="margin-bottom:12px">
+    <div class="row" style="justify-content:space-between;margin-bottom:8px">
+      <h2 style="margin:0">Anggaran bulanan</h2>
+      <div class="row"><input id="budget" inputmode="numeric" placeholder="Atur batas, mis. 3.000.000" style="width:200px" aria-label="Batas anggaran"><button class="sm" id="saveBudget">Simpan</button></div>
+    </div>
+    <div class="bar"><i id="bFill" style="width:0"></i></div>
+    <div class="lbl" id="bText" style="margin-top:6px">Belum ada batas anggaran untuk bulan ini.</div>
+  </section>
+
+  <div class="grid">
+    <section class="box">
+      <h2 id="formTitle">Tambah transaksi</h2>
+      <form class="f" id="form" onsubmit="return false">
+        <div class="seg" role="group" aria-label="Jenis transaksi">
+          <button type="button" id="tOut" class="on">Pengeluaran</button>
+          <button type="button" id="tIn">Pemasukan</button>
+        </div>
+        <input id="amount" inputmode="numeric" placeholder="Jumlah (Rp)" aria-label="Jumlah">
+        <div class="f2">
+          <select id="cat" aria-label="Kategori"></select>
+          <input type="date" id="date" aria-label="Tanggal">
+        </div>
+        <input id="note" placeholder="Catatan (opsional), mis. makan siang" maxlength="80" aria-label="Catatan">
+        <div class="row"><button class="pri" id="save" type="button" style="flex:1">Simpan transaksi</button><button id="cancel" type="button" hidden>Batal</button></div>
+      </form>
+    </section>
+    <section class="box">
+      <h2>Pengeluaran per kategori</h2>
+      <div id="cats"></div>
+    </section>
+  </div>
+
+  <section class="box">
+    <div class="row" style="justify-content:space-between;margin-bottom:10px">
+      <h2 style="margin:0">Riwayat transaksi</h2>
+      <div class="row"><button class="sm" id="copy">Salin sebagai CSV</button><button class="sm" id="clear">Hapus semua data</button></div>
+    </div>
+    <div class="filters">
+      <input id="q" placeholder="Cari catatan atau kategori" aria-label="Cari">
+      <select id="fType" aria-label="Filter jenis"><option value="">Semua jenis</option><option value="out">Pengeluaran</option><option value="in">Pemasukan</option></select>
+      <select id="fCat" aria-label="Filter kategori"></select>
+    </div>
+    <div id="list"></div>
+  </section>
+</div>
+<div id="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
